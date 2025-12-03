@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cairo Essentials | Consumables Imports</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sand: #f3eadc;
+      --espresso: #6b4926;
+      --espresso-70: rgba(107, 73, 38, 0.7);
+      --card: #fffaf0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--sand);
+      color: var(--espresso);
+      line-height: 1.6;
+    }
+
+    header {
+      padding: 32px 5vw 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: var(--espresso);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .logo img {
+      width: 64px;
+      height: 64px;
+      border-radius: 20px;
+      border: 2px solid var(--espresso);
+      background: #fff;
+      object-fit: cover;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: var(--espresso);
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 10px;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .nav a:hover {
+      background: var(--card);
+      transform: translateY(-1px);
+    }
+
+    .cta {
+      background: var(--espresso);
+      color: #fff;
+      border: none;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 8px 20px rgba(107, 73, 38, 0.18);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 26px rgba(107, 73, 38, 0.25);
+    }
+
+    main {
+      padding: 0 5vw 80px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+      align-items: center;
+      background: linear-gradient(135deg, rgba(107, 73, 38, 0.12), rgba(107, 73, 38, 0.04));
+      border-radius: 28px;
+      padding: 48px;
+      box-shadow: 0 24px 48px rgba(107, 73, 38, 0.12);
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 4vw, 46px);
+      margin: 0 0 16px;
+      letter-spacing: 0.01em;
+    }
+
+    .hero p {
+      margin: 0 0 22px;
+      color: var(--espresso-70);
+      font-size: 18px;
+    }
+
+    .hero .highlights {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .pill {
+      background: var(--card);
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(107, 73, 38, 0.14);
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .pill span {
+      width: 8px;
+      height: 8px;
+      background: var(--espresso);
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .hero-img {
+      justify-self: center;
+      background: #fff;
+      padding: 18px;
+      border-radius: 24px;
+      border: 1px solid rgba(107, 73, 38, 0.15);
+      box-shadow: 0 16px 36px rgba(107, 73, 38, 0.12);
+    }
+
+    .hero-img img {
+      width: 260px;
+      max-width: 100%;
+      display: block;
+    }
+
+    .section {
+      margin-top: 64px;
+    }
+
+    .section h2 {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .section p {
+      color: var(--espresso-70);
+      max-width: 760px;
+      margin: 0 0 24px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px;
+      border: 1px solid rgba(107, 73, 38, 0.12);
+      box-shadow: 0 12px 24px rgba(107, 73, 38, 0.08);
+      display: grid;
+      gap: 10px;
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--espresso-70);
+      font-size: 15px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 10px;
+      background: rgba(107, 73, 38, 0.12);
+      color: var(--espresso);
+      font-weight: 700;
+      border-radius: 10px;
+      font-size: 12px;
+      letter-spacing: 0.02em;
+    }
+
+    .contact {
+      background: var(--espresso);
+      color: #fff;
+      border-radius: 22px;
+      padding: 28px;
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      align-items: center;
+    }
+
+    .contact h3 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    .contact p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .contact .cta {
+      background: #fff;
+      color: var(--espresso);
+      box-shadow: none;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--espresso-70);
+      padding: 22px 0 10px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 640px) {
+      header {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+      }
+
+      .hero {
+        padding: 32px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="logo" href="#">
+      <img src="assets/logo/logosand.png" alt="Cairo Essentials logo" />
+      <div>
+        <div>Cairo Essentials</div>
+        <small>Consumables Imports</small>
+      </div>
+    </a>
+    <div class="nav">
+      <a href="#focus">Focus</a>
+      <a href="#partners">Why Us</a>
+      <a href="#contact">Contact</a>
+      <a class="cta" href="mailto:hello@cairoessentials.com">Partner with us</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <h1>Importing trusted consumables to power Egypt’s best selections.</h1>
+        <p>We curate global consumable brands, manage end-to-end logistics, and ensure shelves stay stocked with reliable, high-quality essentials tailored for Egyptian consumers.</p>
+        <div class="highlights">
+          <div class="pill"><span></span>Cold-chain ready, secure handling</div>
+          <div class="pill"><span></span>Customs-cleared & compliance-led</div>
+          <div class="pill"><span></span>Forecasting for stable availability</div>
+        </div>
+      </div>
+      <div class="hero-img">
+        <img src="assets/logo/logosand.png" alt="Cairo Essentials brand mark" />
+      </div>
+    </section>
+
+    <section id="focus" class="section">
+      <h2>Consumables first. Precision always.</h2>
+      <p>From everyday pantry staples to specialty goods, our portfolio is built for retailers and distributors who demand consistent quality and punctual deliveries. We combine market insight with disciplined sourcing to keep your consumers confident in every purchase.</p>
+      <div class="cards">
+        <div class="card">
+          <div class="badge">Priority</div>
+          <h3>Food & Beverage Essentials</h3>
+          <p>Shelf-stable goods, beverages, and premium pantry items sourced with strict quality controls and supplier audits.</p>
+        </div>
+        <div class="card">
+          <div class="badge">Integrity</div>
+          <h3>Compliance & Traceability</h3>
+          <p>Transparent paperwork, batch tracking, and certifications that speed up approvals and keep partners confident.</p>
+        </div>
+        <div class="card">
+          <div class="badge">Assurance</div>
+          <h3>Climate-Aware Logistics</h3>
+          <p>Cold-chain coordination, condition monitoring, and steady replenishment schedules for sensitive consumables.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="partners" class="section">
+      <h2>Why import with Cairo Essentials?</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Supplier network</h3>
+          <p>Curated global producers with proven reliability, aligned to Egyptian demand profiles and regulatory needs.</p>
+        </div>
+        <div class="card">
+          <h3>Operational clarity</h3>
+          <p>Forecasting, landed-cost transparency, and milestone updates that let you plan merchandising with confidence.</p>
+        </div>
+        <div class="card">
+          <h3>Local stewardship</h3>
+          <p>In-market support teams focused on shelf-readiness, from labeling to in-store activations for rapid sell-through.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact">
+      <div>
+        <h3>Ready to elevate your consumables aisle?</h3>
+        <p>Let’s discuss your sourcing goals and build a reliable import pipeline for your customers.</p>
+      </div>
+      <a class="cta" href="mailto:hello@cairoessentials.com">Start a conversation</a>
+    </section>
+  </main>
+
+  <footer>
+    Cairo Essentials &copy; 2024 — Consumables imports for Egypt
+  </footer>
+</body>
+</html>
