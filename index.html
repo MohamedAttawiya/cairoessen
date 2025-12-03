@@ -7,418 +7,524 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
+<style>
+  :root {
+    --sand: #f3eadc;
+    --espresso: #6b4926;
+    --espresso-70: rgba(107, 73, 38, 0.7);
+    --espresso-60: rgba(107, 73, 38, 0.6);
+    --espresso-75: rgba(107, 73, 38, 0.75);
+    --card: #fffaf0;
+    --accent: #c8743f;
+    --accent-warm: linear-gradient(135deg, #c8743f 0%, #b65b2b 100%);
+    --accent-cool: #4f7f7a;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--sand);
+    color: var(--espresso);
+    line-height: 1.6;
+  }
+
+  header {
+    padding: 36px 5vw 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(107, 73, 38, 0.18);
+    background: linear-gradient(180deg, rgba(243, 234, 220, 0.85) 0%, rgba(243, 234, 220, 0.65) 100%);
+    backdrop-filter: blur(2px);
+  }
+
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--espresso);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+  }
+
+  .logo img {
+    width: 68px;
+    height: 68px;
+    padding: 8px;
+    border-radius: 22px;
+    background: #fff;
+    object-fit: cover;
+    display: block;
+    box-shadow: 0 8px 18px rgba(107, 73, 38, 0.08);
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .nav a {
+    text-decoration: none;
+    color: var(--espresso);
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 10px;
+    letter-spacing: 0.01em;
+    transition: background 0.2s ease, transform 0.2s ease, color 0.2s ease;
+  }
+
+  .nav a:hover {
+    background: var(--card);
+    color: var(--accent-cool);
+    transform: translateY(-1px);
+  }
+
+  .cta {
+    background: var(--accent-warm);
+    color: #fff;
+    border: none;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+    box-shadow: 0 10px 22px rgba(107, 73, 38, 0.18);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .cta:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #c8743f 0%, #b65b2b 100%);
+    color: #fff;
+    box-shadow: 0 14px 26px rgba(107, 73, 38, 0.18);
+  }
+
+  .cta:active {
+    background: #fff;
+    color: #3a2a18;
+  }
+
+  /* FIX: keep Partner with us text white */
+  .nav .cta {
+    color: #fff !important;
+  }
+
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px 12px;
+    border: 1px solid rgba(107, 73, 38, 0.2);
+    border-radius: 12px;
+    background: #fff;
+    cursor: pointer;
+    box-shadow: 0 8px 18px rgba(107, 73, 38, 0.08);
+  }
+
+  .menu-toggle span {
+    width: 22px;
+    height: 2px;
+    background: var(--espresso);
+    display: block;
+    border-radius: 2px;
+  }
+
+  .menu-toggle:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  main {
+    padding: 0 5vw 80px;
+  }
+
+  .hero {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 42px;
+    align-items: center;
+    background: linear-gradient(150deg, rgba(107, 73, 38, 0.16) 0%, rgba(107, 73, 38, 0.08) 55%, rgba(83, 55, 29, 0.15) 100%);
+    border-radius: 28px;
+    padding: 54px;
+    box-shadow: 0 28px 52px rgba(107, 73, 38, 0.12);
+  }
+
+  .hero h1 {
+    font-size: clamp(32px, 4vw, 46px);
+    margin: 0 0 18px;
+    letter-spacing: 0.01em;
+    line-height: 1.15;
+    max-width: 36ch;
+    color: var(--espresso);
+  }
+
+  .hero p {
+    margin: 0 0 18px;
+    color: var(--espresso-75);
+    font-size: 18px;
+    max-width: 60ch;
+  }
+
+  .hero .highlights {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+    margin-top: 18px;
+  }
+
+  .pill {
+    background: var(--card);
+    padding: 14px 18px;
+    border-radius: 14px;
+    border: 1px solid rgba(107, 73, 38, 0.14);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    white-space: normal;
+    line-height: 1.45;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .pill .icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 10px;
+    background: rgba(107, 73, 38, 0.12);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex: 0 0 28px;
+  }
+
+  .pill:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 20px rgba(107, 73, 38, 0.12);
+  }
+
+  .hero-img {
+    justify-self: center;
+    background: #fff;
+    padding: 14px;
+    border-radius: 24px;
+    border: 1px solid rgba(107, 73, 38, 0.1);
+    box-shadow: 0 12px 26px rgba(107, 73, 38, 0.09);
+  }
+
+  .hero-img img {
+    width: 210px;
+    max-width: 100%;
+    display: block;
+  }
+
+  .section {
+    margin-top: 64px;
+  }
+
+  .section h2 {
+    font-size: 28px;
+    margin-bottom: 12px;
+    letter-spacing: 0.01em;
+    font-weight: 800;
+    color: var(--espresso);
+    line-height: 1.25;
+  }
+
+  .section p {
+    color: var(--espresso-75);
+    max-width: 760px;
+    margin: 0 0 24px;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 18px;
+    border: 1px solid rgba(107, 73, 38, 0.12);
+    box-shadow: 0 12px 24px rgba(107, 73, 38, 0.08);
+    display: grid;
+    gap: 10px;
+  }
+
+  .card h3 {
+    margin: 0;
+    font-size: 18px;
+  }
+
+  .card p {
+    margin: 0;
+    color: var(--espresso-75);
+    font-size: 16px;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 6px 10px;
+    background: rgba(107, 73, 38, 0.12);
+    color: var(--espresso);
+    font-weight: 700;
+    border-radius: 10px;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+
+  .contact {
+    background: var(--espresso);
+    color: #fff;
+    border-radius: 22px;
+    padding: 28px;
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    align-items: center;
+  }
+
+  .contact h3 {
+    margin: 0;
+    font-size: 22px;
+  }
+
+  .contact p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .mission-line {
+    font-style: italic;
+    color: var(--accent-cool);
+    font-weight: 600;
+    margin-top: 16px;
+    margin-bottom: 8px;
+  }
+
+  .contact .cta {
+    background: #fff;
+    color: var(--espresso);
+    box-shadow: none;
+  }
+
+  footer {
+    text-align: center;
+    color: var(--espresso-70);
+    padding: 22px 0 10px;
+    font-size: 14px;
+  }
+
+  @media (max-width: 640px) {
     :root {
-      --sand: #f3eadc;
-      --espresso: #6b4926;
-      --espresso-70: rgba(107, 73, 38, 0.7);
-      --espresso-60: rgba(107, 73, 38, 0.6);
-      --espresso-75: rgba(107, 73, 38, 0.75);
-      --card: #fffaf0;
-      --accent: #c8743f;
-      --accent-warm: linear-gradient(135deg, #c8743f 0%, #b65b2b 100%);
-      --accent-cool: #4f7f7a;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: var(--sand);
-      color: var(--espresso);
-      line-height: 1.6;
+      --espresso: #4c3520;
+      --espresso-70: rgba(76, 53, 32, 0.7);
+      --espresso-60: rgba(76, 53, 32, 0.6);
+      --espresso-75: rgba(76, 53, 32, 0.75);
     }
 
     header {
-      padding: 36px 5vw 28px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid rgba(107, 73, 38, 0.18);
-      background: linear-gradient(180deg, rgba(243, 234, 220, 0.85) 0%, rgba(243, 234, 220, 0.65) 100%);
-      backdrop-filter: blur(2px);
-    }
-
-    .logo {
-      display: inline-flex;
-      align-items: center;
+      flex-direction: column;
       gap: 12px;
-      text-decoration: none;
-      color: var(--espresso);
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      line-height: 1.2;
+      align-items: flex-start;
     }
 
-    .logo img {
-      width: 68px;
-      height: 68px;
-      padding: 8px;
-      border-radius: 22px;
-      background: #fff;
-      object-fit: cover;
-      display: block;
-      box-shadow: 0 8px 18px rgba(107, 73, 38, 0.08);
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-    }
-
-    .nav a {
-      text-decoration: none;
-      color: var(--espresso);
-      font-weight: 600;
-      padding: 10px 20px;
-      border-radius: 10px;
-      letter-spacing: 0.01em;
-      transition: background 0.2s ease, transform 0.2s ease, color 0.2s ease;
-    }
-
-    .nav a:hover {
-      background: var(--card);
-      color: var(--accent-cool);
-      transform: translateY(-1px);
-    }
-
-    .cta {
-      background: var(--accent-warm);
-      color: #fff;
-      border: none;
-      padding: 12px 16px;
-      border-radius: 12px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
-      box-shadow: 0 10px 22px rgba(107, 73, 38, 0.18);
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .cta:hover {
-      transform: translateY(-2px);
-      background: linear-gradient(135deg, #c8743f 0%, #b65b2b 100%);
-      color: #fff;
-      box-shadow: 0 14px 26px rgba(107, 73, 38, 0.18);
-    }
-
-    .cta:active {
-      background: #fff;
-      color: #3a2a18;
+    body {
+      color: #4c3520;
     }
 
     .menu-toggle {
+      display: inline-flex;
+      margin-left: auto;
+    }
+
+    .nav {
       display: none;
+      width: 100%;
       flex-direction: column;
-      gap: 5px;
-      padding: 10px 12px;
-      border: 1px solid rgba(107, 73, 38, 0.2);
-      border-radius: 12px;
-      background: #fff;
-      cursor: pointer;
-      box-shadow: 0 8px 18px rgba(107, 73, 38, 0.08);
+      align-items: flex-start;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(107, 73, 38, 0.16);
+      border-radius: 16px;
+      padding: 12px 14px;
+      box-shadow: 0 18px 28px rgba(107, 73, 38, 0.12);
     }
 
-    .menu-toggle span {
-      width: 22px;
-      height: 2px;
-      background: var(--espresso);
-      display: block;
-      border-radius: 2px;
+    .nav.open {
+      display: flex;
     }
 
-    .menu-toggle:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 3px;
-    }
-
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
-    }
-
-    main {
-      padding: 0 5vw 80px;
+    .nav a {
+      width: 100%;
+      padding: 12px 10px;
     }
 
     .hero {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 42px;
-      align-items: center;
-      background: linear-gradient(150deg, rgba(107, 73, 38, 0.16) 0%, rgba(107, 73, 38, 0.08) 55%, rgba(83, 55, 29, 0.15) 100%);
-      border-radius: 28px;
-      padding: 54px;
-      box-shadow: 0 28px 52px rgba(107, 73, 38, 0.12);
+      padding: 36px 24px 38px;
+      gap: 32px;
     }
 
-    .hero h1 {
-      font-size: clamp(32px, 4vw, 46px);
-      margin: 0 0 18px;
-      letter-spacing: 0.01em;
-      line-height: 1.15;
-      max-width: 36ch;
-      color: var(--espresso);
-    }
-
-    .hero p {
-      margin: 0 0 18px;
-      color: var(--espresso-75);
-      font-size: 18px;
-      max-width: 60ch;
+    .hero h1,
+    .hero p,
+    .mission-line {
+      text-align: center;
     }
 
     .hero .highlights {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 24px;
-      margin-top: 18px;
+      grid-template-columns: 1fr;
+      gap: 20px;
     }
+  }
+  /* Fix: tighten spacing between logo and hamburger on mobile */
+/* === Modern dropdown like Axenus === */
+@media (max-width: 640px) {
+  header {
+    position: relative;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 5vw;
+    background: rgba(243, 234, 220, 0.96);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(107, 73, 38, 0.12);
+    z-index: 10;
+  }
 
-    .pill {
-      background: var(--card);
-      padding: 14px 18px;
-      border-radius: 14px;
-      border: 1px solid rgba(107, 73, 38, 0.14);
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      white-space: normal;
-      line-height: 1.45;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
+  .menu-toggle {
+    display: none;
+  }
 
-    .pill .icon {
-      width: 28px;
-      height: 28px;
-      border-radius: 10px;
-      background: rgba(107, 73, 38, 0.12);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      flex: 0 0 28px;
-    }
+  .menu-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 5px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 4px 10px rgba(107, 73, 38, 0.12);
+  }
 
-    .pill:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 20px rgba(107, 73, 38, 0.12);
-    }
+  .menu-icon span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--espresso);
+    transition: 0.3s;
+  }
 
-    .hero-img {
-      justify-self: center;
-      background: #fff;
-      padding: 14px;
-      border-radius: 24px;
-      border: 1px solid rgba(107, 73, 38, 0.1);
-      box-shadow: 0 12px 26px rgba(107, 73, 38, 0.09);
-    }
+  /* Animate burger to X */
+  .menu-toggle:checked + .menu-icon span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  .menu-toggle:checked + .menu-icon span:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle:checked + .menu-icon span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+  }
 
-    .hero-img img {
-      width: 210px;
-      max-width: 100%;
-      display: block;
-    }
+  /* Dropdown panel */
+  .nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100%;
+    flex-direction: column;
+    text-align: center;
+    background: rgba(243, 234, 220, 0.97);
+    backdrop-filter: blur(8px);
+    border-top: 1px solid rgba(107, 73, 38, 0.1);
+    box-shadow: 0 10px 24px rgba(107, 73, 38, 0.08);
+    border-radius: 0 0 16px 16px;
+    padding: 1rem 0;
+    z-index: 9;
+  }
 
-    .section {
-      margin-top: 64px;
-    }
+  .menu-toggle:checked ~ .nav {
+    display: flex;
+  }
 
-    .section h2 {
-      font-size: 28px;
-      margin-bottom: 12px;
-      letter-spacing: 0.01em;
-      font-weight: 800;
-      color: var(--espresso);
-      line-height: 1.25;
-    }
+  .nav a {
+    color: var(--espresso);
+    font-size: 1rem;
+    padding: 0.8rem 0;
+  }
 
-    .section p {
-      color: var(--espresso-75);
-      max-width: 760px;
-      margin: 0 0 24px;
-    }
+  .nav .cta {
+    margin: 0.5rem auto 0;
+    width: 90%;
+    justify-content: center;
+    color: #fff !important;
+  }
+}
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 18px;
-    }
+/* Space between header bar and first container */
+header {
+  margin-bottom: 12px;
+}
 
-    .card {
-      background: #fff;
-      border-radius: 16px;
-      padding: 18px;
-      border: 1px solid rgba(107, 73, 38, 0.12);
-      box-shadow: 0 12px 24px rgba(107, 73, 38, 0.08);
-      display: grid;
-      gap: 10px;
-    }
+/* If you want slightly tighter on mobile */
+@media (max-width: 640px) {
+  header {
+    margin-bottom: 10px;
+  }
+}
 
-    .card h3 {
-      margin: 0;
-      font-size: 18px;
-    }
 
-    .card p {
-      margin: 0;
-      color: var(--espresso-75);
-      font-size: 16px;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 6px 10px;
-      background: rgba(107, 73, 38, 0.12);
-      color: var(--espresso);
-      font-weight: 700;
-      border-radius: 10px;
-      font-size: 12px;
-      letter-spacing: 0.02em;
-    }
-
-    .contact {
-      background: var(--espresso);
-      color: #fff;
-      border-radius: 22px;
-      padding: 28px;
-      display: grid;
-      gap: 12px;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      align-items: center;
-    }
-
-    .contact h3 {
-      margin: 0;
-      font-size: 22px;
-    }
-
-    .contact p {
-      margin: 0;
-      color: rgba(255, 255, 255, 0.9);
-    }
-
-    .mission-line {
-      font-style: italic;
-      color: var(--accent-cool);
-      font-weight: 600;
-      margin-top: 16px;
-      margin-bottom: 8px;
-    }
-
-    .contact .cta {
-      background: #fff;
-      color: var(--espresso);
-      box-shadow: none;
-    }
-
-    footer {
-      text-align: center;
-      color: var(--espresso-70);
-      padding: 22px 0 10px;
-      font-size: 14px;
-    }
-
-    @media (max-width: 640px) {
-      :root {
-        --espresso: #4c3520;
-        --espresso-70: rgba(76, 53, 32, 0.7);
-        --espresso-60: rgba(76, 53, 32, 0.6);
-        --espresso-75: rgba(76, 53, 32, 0.75);
-      }
-
-      header {
-        flex-direction: column;
-        gap: 12px;
-        align-items: flex-start;
-      }
-
-      body {
-        color: #4c3520;
-      }
-
-      .menu-toggle {
-        display: inline-flex;
-        margin-left: auto;
-      }
-
-      .nav {
-        display: none;
-        width: 100%;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-        background: rgba(255, 255, 255, 0.8);
-        border: 1px solid rgba(107, 73, 38, 0.16);
-        border-radius: 16px;
-        padding: 12px 14px;
-        box-shadow: 0 18px 28px rgba(107, 73, 38, 0.12);
-      }
-
-      .nav.open {
-        display: flex;
-      }
-
-      .nav a {
-        width: 100%;
-        padding: 12px 10px;
-      }
-
-      .hero {
-        padding: 36px 24px 38px;
-        gap: 32px;
-      }
-
-      .hero h1,
-      .hero p,
-      .mission-line {
-        text-align: center;
-      }
-
-      .hero .highlights {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-    }
-  </style>
+</style>
 </head>
 <body>
   <header>
-    <a class="logo" href="#">
-      <img src="assets/logo/logosand.png" alt="Cairo Essentials logo" />
-      <div>
-        <div>Cairo Essentials</div>
-        <small>Consumables Imports</small>
-      </div>
-    </a>
-    <button class="menu-toggle" aria-expanded="false" aria-controls="primary-nav">
-      <span></span>
-      <span></span>
-      <span></span>
-      <span class="sr-only">Toggle navigation</span>
-    </button>
-    <div id="primary-nav" class="nav">
-      <a href="#focus">Focus</a>
-      <a href="#partners">Why Us</a>
-      <a href="#contact">Contact</a>
-      <a class="cta" href="mailto:hello@cairoessentials.com">Partner with us</a>
+  <a class="logo" href="#">
+    <img src="assets/logo/logosand.png" alt="Cairo Essentials logo" />
+    <div>
+      <div>Cairo Essentials</div>
+      <small>Consumables Imports</small>
     </div>
-  </header>
+  </a>
+
+  <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+  <label for="menu-toggle" class="menu-icon">
+    <span></span><span></span><span></span>
+  </label>
+
+  <div id="primary-nav" class="nav">
+    <a href="#focus">Focus</a>
+    <a href="#partners">Why Us</a>
+    <a href="#contact">Contact</a>
+    <a class="cta" href="mailto:hello@cairoessentials.com">Partner with us</a>
+  </div>
+</header>
+
 
   <main>
     <section class="hero">
